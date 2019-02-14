@@ -80,6 +80,7 @@
 		205342392215FD4000103ADD /* EmojiCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0565132C1EF489C0009EA38F /* EmojiCollectionViewCell.xib */; };
 		2053423A2215FD4000103ADD /* StickerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 056513321EF489C0009EA38F /* StickerCollectionViewCell.xib */; };
 		2053423B2215FD4000103ADD /* PhotoEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 056513331EF489C0009EA38F /* PhotoEditorViewController.xib */; };
+		205342522216031C00103ADD /* icomoon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0565132D1EF489C0009EA38F /* icomoon.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -364,6 +365,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				205342372215FD4000103ADD /* StickersViewController.xib in Resources */,
+				205342522216031C00103ADD /* icomoon.ttf in Resources */,
 				2053423A2215FD4000103ADD /* StickerCollectionViewCell.xib in Resources */,
 				2053423B2215FD4000103ADD /* PhotoEditorViewController.xib in Resources */,
 				205342382215FD4000103ADD /* ColorCollectionViewCell.xib in Resources */,
@@ -580,7 +582,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = 9389TWFQML;
 				INFOPLIST_FILE = "Photo Editor/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hamed.Photo-Editor";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -597,7 +599,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = 9389TWFQML;
 				INFOPLIST_FILE = "Photo Editor/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hamed.Photo-Editor";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -623,7 +625,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = PhotoEditor/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -654,7 +656,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = PhotoEditor/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dsc.PhotoEditor;
