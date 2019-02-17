@@ -11,7 +11,7 @@ import Foundation
 
 import UIKit
 
-extension PhotoEditorViewController : UIGestureRecognizerDelegate  {
+extension PEPhotoEditorViewController : UIGestureRecognizerDelegate  {
     
     /**
      UIPanGestureRecognizer - Moving Objects

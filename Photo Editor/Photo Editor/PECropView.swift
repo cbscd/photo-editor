@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-open class CropView: UIView, UIScrollViewDelegate, UIGestureRecognizerDelegate, CropRectViewDelegate {
+open class PECropView: UIView, UIScrollViewDelegate, UIGestureRecognizerDelegate, PECropRectViewDelegate {
     open var image: UIImage? {
         didSet {
             if image != nil {
@@ -106,7 +106,7 @@ open class CropView: UIView, UIScrollViewDelegate, UIGestureRecognizerDelegate, 
     fileprivate var imageSize = CGSize(width: 1.0, height: 1.0)
     fileprivate var scrollView: UIScrollView!
     fileprivate var zoomingView: UIView?
-    fileprivate let cropRectView = CropRectView()
+    fileprivate let cropRectView = PECropRectView()
     fileprivate let topOverlayView = UIView()
     fileprivate let leftOverlayView = UIView()
     fileprivate let rightOverlayView = UIView()
@@ -146,7 +146,7 @@ open class CropView: UIView, UIScrollViewDelegate, UIGestureRecognizerDelegate, 
         scrollView.clipsToBounds =  false
         addSubview(scrollView)
         
-        rotationGestureRecognizer = UIRotationGestureRecognizer(target: self, action: #selector(CropView.handleRotation(_:)))
+        rotationGestureRecognizer = UIRotationGestureRecognizer(target: self, action: #selector(PECropView.handleRotation(_:)))
         rotationGestureRecognizer?.delegate = self
         scrollView.addGestureRecognizer(rotationGestureRecognizer)
         
@@ -388,7 +388,7 @@ open class CropView: UIView, UIScrollViewDelegate, UIGestureRecognizerDelegate, 
         }
     }
     
-    fileprivate func cappedCropRectInImageRectWithCropRectView(_ cropRectView: CropRectView) -> CGRect {
+    fileprivate func cappedCropRectInImageRectWithCropRectView(_ cropRectView: PECropRectView) -> CGRect {
         var cropRect = cropRectView.frame
         
         let rect = convert(cropRect, to: scrollView)
@@ -457,17 +457,17 @@ open class CropView: UIView, UIScrollViewDelegate, UIGestureRecognizerDelegate, 
     }
     
     // MARK: - CropView delegate methods
-    func cropRectViewDidBeginEditing(_ view: CropRectView) {
+    func cropRectViewDidBeginEditing(_ view: PECropRectView) {
         resizing = true
     }
     
-    func cropRectViewDidChange(_ view: CropRectView) {
+    func cropRectViewDidChange(_ view: PECropRectView) {
         let cropRect = cappedCropRectInImageRectWithCropRectView(view)
         layoutCropRectViewWithCropRect(cropRect)
         automaticZoomIfEdgeTouched(cropRect)
     }
     
-    func cropRectViewDidEndEditing(_ view: CropRectView) {
+    func cropRectViewDidEndEditing(_ view: PECropRectView) {
         resizing = false
         zoomToCropRect(cropRectView.frame)
     }

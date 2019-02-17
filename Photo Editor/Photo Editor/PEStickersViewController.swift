@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StickersViewController: UIViewController, UIGestureRecognizerDelegate {
+class PEStickersViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var holdView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -17,10 +17,10 @@ class StickersViewController: UIViewController, UIGestureRecognizerDelegate {
     var collectioView: UICollectionView!
     var emojisCollectioView: UICollectionView!
     
-    var emojisDelegate: EmojisCollectionViewDelegate!
+    var emojisDelegate: PEEmojisCollectionViewDelegate!
     
     var stickers : [UIImage] = []
-    var stickersViewControllerDelegate : StickersViewControllerDelegate?
+    var stickersViewControllerDelegate : PEStickersViewControllerDelegate?
     
     let screenSize = UIScreen.main.bounds.size
     
@@ -42,7 +42,7 @@ class StickersViewController: UIViewController, UIGestureRecognizerDelegate {
         pageControl.numberOfPages = 2
         
         holdView.layer.cornerRadius = 3
-        let gesture = UIPanGestureRecognizer.init(target: self, action: #selector(StickersViewController.panGesture))
+        let gesture = UIPanGestureRecognizer.init(target: self, action: #selector(PEStickersViewController.panGesture))
         gesture.delegate = self
         view.addGestureRecognizer(gesture)
     }
@@ -67,8 +67,8 @@ class StickersViewController: UIViewController, UIGestureRecognizerDelegate {
         collectioView.dataSource = self
         
         collectioView.register(
-            UINib(nibName: "StickerCollectionViewCell", bundle: Bundle(for: StickerCollectionViewCell.self)),
-            forCellWithReuseIdentifier: "StickerCollectionViewCell")
+            UINib(nibName: String(describing: type(of: PEStickerCollectionViewCell())), bundle: Bundle(for: PEStickerCollectionViewCell.self)),
+            forCellWithReuseIdentifier: String(describing: type(of: PEStickerCollectionViewCell())))
         
         //-----------------------------------
         
@@ -84,14 +84,14 @@ class StickersViewController: UIViewController, UIGestureRecognizerDelegate {
         emojisCollectioView = UICollectionView(frame: emojisFrame, collectionViewLayout: emojislayout)
         emojisCollectioView.backgroundColor = .clear
         scrollView.addSubview(emojisCollectioView)
-        emojisDelegate = EmojisCollectionViewDelegate()
+        emojisDelegate = PEEmojisCollectionViewDelegate()
         emojisDelegate.stickersViewControllerDelegate = stickersViewControllerDelegate
         emojisCollectioView.delegate = emojisDelegate
         emojisCollectioView.dataSource = emojisDelegate
         
         emojisCollectioView.register(
-            UINib(nibName: "EmojiCollectionViewCell", bundle: Bundle(for: EmojiCollectionViewCell.self)),
-            forCellWithReuseIdentifier: "EmojiCollectionViewCell")
+            UINib(nibName: String(describing: type(of: PEEmojiCollectionViewCell())), bundle: Bundle(for: PEEmojiCollectionViewCell.self)),
+            forCellWithReuseIdentifier: String(describing: type(of: PEEmojiCollectionViewCell())))
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -204,7 +204,7 @@ class StickersViewController: UIViewController, UIGestureRecognizerDelegate {
     
 }
 
-extension StickersViewController: UIScrollViewDelegate {
+extension PEStickersViewController: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let pageWidth = scrollView.bounds.width
@@ -214,7 +214,7 @@ extension StickersViewController: UIScrollViewDelegate {
 }
 
 // MARK: - UICollectionViewDataSource
-extension StickersViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension PEStickersViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return stickers.count
@@ -229,8 +229,8 @@ extension StickersViewController: UICollectionViewDataSource, UICollectionViewDe
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let identifier = "StickerCollectionViewCell"
-        let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! StickerCollectionViewCell
+        let identifier = "PEStickerCollectionViewCell"
+        let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! PEStickerCollectionViewCell
         cell.stickerImage.image = stickers[indexPath.item]
         return cell
     }

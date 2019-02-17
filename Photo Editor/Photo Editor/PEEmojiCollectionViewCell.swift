@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EmojiCollectionViewCell: UICollectionViewCell {
+class PEEmojiCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var emojiLabel: UILabel!
     

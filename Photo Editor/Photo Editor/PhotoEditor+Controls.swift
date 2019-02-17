@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 // MARK: - Control
-public enum control {
+public enum PEControl {
     case crop
     case sticker
     case draw
@@ -20,7 +20,7 @@ public enum control {
     case clear
 }
 
-extension PhotoEditorViewController {
+extension PEPhotoEditorViewController {
 
      //MARK: Top Toolbar
     
@@ -30,7 +30,7 @@ extension PhotoEditorViewController {
     }
 
     @IBAction func cropButtonTapped(_ sender: UIButton) {
-        let controller = CropViewController()
+        let controller = PECropViewController()
         controller.delegate = self
         controller.image = image
         let navController = UINavigationController(rootViewController: controller)
@@ -82,7 +82,7 @@ extension PhotoEditorViewController {
     //MARK: Bottom Toolbar
     
     @IBAction func saveButtonTapped(_ sender: AnyObject) {
-        UIImageWriteToSavedPhotosAlbum(canvasView.toImage(),self, #selector(PhotoEditorViewController.image(_:withPotentialError:contextInfo:)), nil)
+        UIImageWriteToSavedPhotosAlbum(canvasView.toImage(),self, #selector(PEPhotoEditorViewController.image(_:withPotentialError:contextInfo:)), nil)
     }
     
     @IBAction func shareButtonTapped(_ sender: UIButton) {

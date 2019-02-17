@@ -9,14 +9,14 @@
 
 import UIKit
 
-protocol CropRectViewDelegate: class {
-    func cropRectViewDidBeginEditing(_ view: CropRectView)
-    func cropRectViewDidChange(_ view: CropRectView)
-    func cropRectViewDidEndEditing(_ view: CropRectView)
+protocol PECropRectViewDelegate: class {
+    func cropRectViewDidBeginEditing(_ view: PECropRectView)
+    func cropRectViewDidChange(_ view: PECropRectView)
+    func cropRectViewDidEndEditing(_ view: PECropRectView)
 }
 
-class CropRectView: UIView, ResizeControlDelegate {
-    weak var delegate: CropRectViewDelegate?
+class PECropRectView: UIView, PEResizeControlDelegate {
+    weak var delegate: PECropRectViewDelegate?
     var showsGridMajor = true {
         didSet {
             setNeedsDisplay()
@@ -38,14 +38,14 @@ class CropRectView: UIView, ResizeControlDelegate {
     }
     
     fileprivate var resizeImageView: UIImageView!
-    fileprivate let topLeftCornerView = ResizeControl()
-    fileprivate let topRightCornerView = ResizeControl()
-    fileprivate let bottomLeftCornerView = ResizeControl()
-    fileprivate let bottomRightCornerView = ResizeControl()
-    fileprivate let topEdgeView = ResizeControl()
-    fileprivate let leftEdgeView = ResizeControl()
-    fileprivate let rightEdgeView = ResizeControl()
-    fileprivate let bottomEdgeView = ResizeControl()
+    fileprivate let topLeftCornerView = PEResizeControl()
+    fileprivate let topRightCornerView = PEResizeControl()
+    fileprivate let bottomLeftCornerView = PEResizeControl()
+    fileprivate let bottomRightCornerView = PEResizeControl()
+    fileprivate let topEdgeView = PEResizeControl()
+    fileprivate let leftEdgeView = PEResizeControl()
+    fileprivate let rightEdgeView = PEResizeControl()
+    fileprivate let bottomEdgeView = PEResizeControl()
     fileprivate var initialRect = CGRect.zero
     fileprivate var fixedAspectRatio: CGFloat = 0.0
     
@@ -90,7 +90,7 @@ class CropRectView: UIView, ResizeControlDelegate {
     }
     
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-        for subview in subviews where subview is ResizeControl {
+        for subview in subviews where subview is PEResizeControl {
             if subview.frame.contains(point) {
                 return subview
             }
@@ -154,21 +154,21 @@ class CropRectView: UIView, ResizeControlDelegate {
     }
 
     // MARK: - ResizeControl delegate methods
-    func resizeControlDidBeginResizing(_ control: ResizeControl) {
+    func resizeControlDidBeginResizing(_ control: PEResizeControl) {
         initialRect = frame
         delegate?.cropRectViewDidBeginEditing(self)
     }
     
-    func resizeControlDidResize(_ control: ResizeControl) {
+    func resizeControlDidResize(_ control: PEResizeControl) {
         frame = cropRectWithResizeControlView(control)
         delegate?.cropRectViewDidChange(self)
     }
     
-    func resizeControlDidEndResizing(_ control: ResizeControl) {
+    func resizeControlDidEndResizing(_ control: PEResizeControl) {
         delegate?.cropRectViewDidEndEditing(self)
     }
     
-    fileprivate func cropRectWithResizeControlView(_ resizeControl: ResizeControl) -> CGRect {
+    fileprivate func cropRectWithResizeControlView(_ resizeControl: PEResizeControl) -> CGRect {
         var rect = frame
         
         if resizeControl == topEdgeView {

@@ -8,7 +8,7 @@
 
 import UIKit
 
-public final class PhotoEditorViewController: UIViewController {
+public final class PEPhotoEditorViewController: UIViewController {
     
     /** holding the 2 imageViews original image and drawing & stickers */
     @IBOutlet weak var canvasView: UIView!
@@ -49,11 +49,11 @@ public final class PhotoEditorViewController: UIViewController {
      */
     public var colors  : [UIColor] = []
     
-    public var photoEditorDelegate: PhotoEditorDelegate?
-    var colorsCollectionViewDelegate: ColorsCollectionViewDelegate!
+    public var photoEditorDelegate: PEPhotoEditorDelegate?
+    var colorsCollectionViewDelegate: PEColorsCollectionViewDelegate!
     
     // list of controls to be hidden
-    public var hiddenControls : [control] = []
+    public var hiddenControls : [PEControl] = []
     
     var stickersVCIsVisible = false
     var drawColor: UIColor = UIColor.black
@@ -70,7 +70,7 @@ public final class PhotoEditorViewController: UIViewController {
     var isTyping: Bool = false
     
     
-    var stickersViewController: StickersViewController!
+    var stickersViewController: PEStickersViewController!
 
     //Register Custom font before we load XIB
     public override func loadView() {
@@ -101,7 +101,7 @@ public final class PhotoEditorViewController: UIViewController {
         
         
         configureCollectionView()
-        stickersViewController = StickersViewController(nibName: "StickersViewController", bundle: Bundle(for: StickersViewController.self))
+        stickersViewController = PEStickersViewController(nibName: String(describing: type(of: PEStickersViewController())), bundle: Bundle(for: PEStickersViewController.self))
         hideControls()
     }
     
@@ -112,7 +112,7 @@ public final class PhotoEditorViewController: UIViewController {
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
         colorsCollectionView.collectionViewLayout = layout
-        colorsCollectionViewDelegate = ColorsCollectionViewDelegate()
+        colorsCollectionViewDelegate = PEColorsCollectionViewDelegate()
         colorsCollectionViewDelegate.colorDelegate = self
         if !colors.isEmpty {
             colorsCollectionViewDelegate.colors = colors
@@ -121,8 +121,8 @@ public final class PhotoEditorViewController: UIViewController {
         colorsCollectionView.dataSource = colorsCollectionViewDelegate
         
         colorsCollectionView.register(
-            UINib(nibName: "ColorCollectionViewCell", bundle: Bundle(for: ColorCollectionViewCell.self)),
-            forCellWithReuseIdentifier: "ColorCollectionViewCell")
+            UINib(nibName: String(describing: type(of: PEColorCollectionViewCell())), bundle: Bundle(for: PEColorCollectionViewCell.self)),
+            forCellWithReuseIdentifier: String(describing: type(of: PEColorCollectionViewCell())))
     }
     
     func setImageView(image: UIImage) {
@@ -139,7 +139,7 @@ public final class PhotoEditorViewController: UIViewController {
     }
 }
 
-extension PhotoEditorViewController: ColorDelegate {
+extension PEPhotoEditorViewController: PEColorDelegate {
     func didSelectColor(color: UIColor) {
         if isDrawing {
             self.drawColor = color

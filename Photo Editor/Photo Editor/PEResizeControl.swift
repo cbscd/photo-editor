@@ -8,14 +8,14 @@
 
 import UIKit
 
-protocol ResizeControlDelegate: class {
-    func resizeControlDidBeginResizing(_ control: ResizeControl)
-    func resizeControlDidResize(_ control: ResizeControl)
-    func resizeControlDidEndResizing(_ control: ResizeControl)
+protocol PEResizeControlDelegate: class {
+    func resizeControlDidBeginResizing(_ control: PEResizeControl)
+    func resizeControlDidResize(_ control: PEResizeControl)
+    func resizeControlDidEndResizing(_ control: PEResizeControl)
 }
 
-class ResizeControl: UIView {
-    weak var delegate: ResizeControlDelegate?
+class PEResizeControl: UIView {
+    weak var delegate: PEResizeControlDelegate?
     var translation = CGPoint.zero
     var enabled = true
     fileprivate var startPoint = CGPoint.zero
@@ -34,7 +34,7 @@ class ResizeControl: UIView {
         backgroundColor = UIColor.clear
         isExclusiveTouch = true
         
-        let gestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(ResizeControl.handlePan(_:)))
+        let gestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(PEResizeControl.handlePan(_:)))
         addGestureRecognizer(gestureRecognizer)
     }
     

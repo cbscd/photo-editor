@@ -8,13 +8,13 @@
 
 import UIKit
 
-public protocol CropViewControllerDelegate: class {
-    func cropViewController(_ controller: CropViewController, didFinishCroppingImage image: UIImage, transform: CGAffineTransform, cropRect: CGRect)
-    func cropViewControllerDidCancel(_ controller: CropViewController)
+public protocol PECropViewControllerDelegate: class {
+    func cropViewController(_ controller: PECropViewController, didFinishCroppingImage image: UIImage, transform: CGAffineTransform, cropRect: CGRect)
+    func cropViewControllerDidCancel(_ controller: PECropViewController)
 }
 
-open class CropViewController: UIViewController {
-    open weak var delegate: CropViewControllerDelegate?
+open class PECropViewController: UIViewController {
+    open weak var delegate: PECropViewControllerDelegate?
     open var image: UIImage? {
         didSet {
             cropView?.image = image
@@ -53,7 +53,7 @@ open class CropViewController: UIViewController {
         return cropView!.zoomedCropRect()
     }
 
-    fileprivate var cropView: CropView?
+    fileprivate var cropView: PECropView?
     
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -76,7 +76,7 @@ open class CropViewController: UIViewController {
         view = contentView
         
         // Add CropView
-        cropView = CropView(frame: contentView.bounds)
+        cropView = PECropView(frame: contentView.bounds)
         contentView.addSubview(cropView!)
         
     }
@@ -86,12 +86,12 @@ open class CropViewController: UIViewController {
 
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.toolbar.isTranslucent = false
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(CropViewController.cancel(_:)))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(CropViewController.done(_:)))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(PECropViewController.cancel(_:)))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(PECropViewController.done(_:)))
         
         if self.toolbarItems == nil {
             let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-            let constrainButton = UIBarButtonItem(title: "Constrain", style: .plain, target: self, action: #selector(CropViewController.constrain(_:)))
+            let constrainButton = UIBarButtonItem(title: "Constrain", style: .plain, target: self, action: #selector(PECropViewController.constrain(_:)))
             toolbarItems = [flexibleSpace, constrainButton, flexibleSpace]
         }
         

@@ -8,9 +8,9 @@
 
 import UIKit
 
-class ColorsCollectionViewDelegate: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class PEColorsCollectionViewDelegate: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
-    var colorDelegate : ColorDelegate?
+    var colorDelegate : PEColorDelegate?
     
     /**
      Array of Colors that will show while drawing or typing
@@ -34,7 +34,7 @@ class ColorsCollectionViewDelegate: NSObject, UICollectionViewDataSource, UIColl
         super.init()
     }
     
-    var stickersViewControllerDelegate : StickersViewControllerDelegate?
+    var stickersViewControllerDelegate : PEStickersViewControllerDelegate?
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return colors.count
@@ -49,7 +49,7 @@ class ColorsCollectionViewDelegate: NSObject, UICollectionViewDataSource, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: "ColorCollectionViewCell", for: indexPath) as! ColorCollectionViewCell
+        let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: type(of: PEColorCollectionViewCell())), for: indexPath) as! PEColorCollectionViewCell
         cell.colorView.backgroundColor = colors[indexPath.item]
         return cell
     }

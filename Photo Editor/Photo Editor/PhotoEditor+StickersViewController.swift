@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-extension PhotoEditorViewController {
+extension PEPhotoEditorViewController {
     
     func addStickersViewController() {
         stickersVCIsVisible = true
@@ -47,7 +47,7 @@ extension PhotoEditorViewController {
     }    
 }
 
-extension PhotoEditorViewController: StickersViewControllerDelegate {
+extension PEPhotoEditorViewController: PEStickersViewControllerDelegate {
     
     func didSelectView(view: UIView) {
         self.removeStickersView()
@@ -81,23 +81,23 @@ extension PhotoEditorViewController: StickersViewControllerDelegate {
         view.isUserInteractionEnabled = true
         
         let panGesture = UIPanGestureRecognizer(target: self,
-                                                action: #selector(PhotoEditorViewController.panGesture))
+                                                action: #selector(PEPhotoEditorViewController.panGesture))
         panGesture.minimumNumberOfTouches = 1
         panGesture.maximumNumberOfTouches = 1
         panGesture.delegate = self
         view.addGestureRecognizer(panGesture)
         
         let pinchGesture = UIPinchGestureRecognizer(target: self,
-                                                    action: #selector(PhotoEditorViewController.pinchGesture))
+                                                    action: #selector(PEPhotoEditorViewController.pinchGesture))
         pinchGesture.delegate = self
         view.addGestureRecognizer(pinchGesture)
         
         let rotationGestureRecognizer = UIRotationGestureRecognizer(target: self,
-                                                                    action:#selector(PhotoEditorViewController.rotationGesture) )
+                                                                    action:#selector(PEPhotoEditorViewController.rotationGesture) )
         rotationGestureRecognizer.delegate = self
         view.addGestureRecognizer(rotationGestureRecognizer)
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(PhotoEditorViewController.tapGesture))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(PEPhotoEditorViewController.tapGesture))
         view.addGestureRecognizer(tapGesture)
         
     }

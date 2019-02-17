@@ -25,7 +25,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: PhotoEditorDelegate {
+extension ViewController: PEPhotoEditorDelegate {
     
     func doneEditing(image: UIImage) {
         imageView.image = image
@@ -48,7 +48,7 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
         picker.dismiss(animated: true, completion: nil)
         
         
-        let photoEditor = PhotoEditorViewController(nibName:"PhotoEditorViewController",bundle: Bundle(for: PhotoEditorViewController.self))
+        let photoEditor = PEPhotoEditorViewController(nibName:"PEPhotoEditorViewController",bundle: Bundle(for: PEPhotoEditorViewController.self))
         photoEditor.photoEditorDelegate = self
         photoEditor.image = image
         //Colors for drawing and Text, If not set default values will be used
