@@ -69,9 +69,14 @@ public final class PEPhotoEditorViewController: UIViewController {
     var imageViewToPan: UIImageView?
     var isTyping: Bool = false
     
-    
     var stickersViewController: PEStickersViewController!
 
+    public static func photoEditorViewController() -> PEPhotoEditorViewController {
+    
+        let photoEditor = PEPhotoEditorViewController(nibName: String(describing: type(of: PEPhotoEditorViewController())),bundle: Bundle(for: PEPhotoEditorViewController.self))
+        return photoEditor
+    }
+    
     //Register Custom font before we load XIB
     public override func loadView() {
         registerFont()
