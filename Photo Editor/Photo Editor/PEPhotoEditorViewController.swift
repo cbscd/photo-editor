@@ -71,7 +71,7 @@ import UIKit
     
     var stickersViewController: PEStickersViewController!
 
-    public static func photoEditorViewController() -> PEPhotoEditorViewController {
+    @objc public class func photoEditorViewController() -> PEPhotoEditorViewController {
     
         let photoEditor = PEPhotoEditorViewController(nibName: String(describing: type(of: PEPhotoEditorViewController())),bundle: Bundle(for: PEPhotoEditorViewController.self))
         return photoEditor
