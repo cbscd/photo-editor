@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 // MARK: - Control
-public enum PEControl {
+@objc public enum PEControl : NSInteger {
     case crop
     case sticker
     case draw
